@@ -1,0 +1,17 @@
+{% extends 'navbar.html' %}
+
+{% block content %}
+<div class="container col-6">
+{% for blog in blogs %}
+    <div class="card border-primary">
+        <div class="card-body">
+            <h4 class="card-title">{{ blog.title }}</h4>
+            <h6 class="card-subtitle mb-2 text-muted">By {{ blog.user | title }}</h6>
+            <p class="card-text" style="width: 250;white-space: nowrap;overflow: hidden">{{ blog.body }}</p>
+            <a href="/accounts/detail/{{blog.id}}/" class="card-link btn btn-success">Surprise! Click</a>
+        </div>
+    </div>
+    
+{% endfor %}
+</div>
+{% endblock %}

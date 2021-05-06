@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Bootstrap Example</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+</head>
+<body style="background:cornflowerblue">
+  {% if request.COOKIES.darkmode == 'on' %}
+  <style>  
+    body,a,div {
+      color:white !important;
+      background-color:rgb(37, 36, 36) !important;
+    }
+  </style>
+  {% endif %}
+
+
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    {% block nav %}
+    <div class="collapse navbar-collapse" id="navbarColor02">
+      <ul class="navbar-nav mr-auto">
+       {% if request.user.is_authenticated %}
+      <li class="nav-item">
+        <a class="nav-link" href="/accounts/home/">HOME</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="/accounts/myblog/">MY BLOGS</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="/accounts/create/">CREATE BLOG</a>
+      </li>
+       
+      <li class="nav-item">
+        <a class="nav-link" href="/accounts/edit/">EDIT </a>
+      </li>
+      {% if request.COOKIES.darkmode == 'on' %}
+      <li class="nav-item">
+        <a class="nav-link" href="/accounts/darkmodeoff/">NORMALMODE</a>
+      </li>
+      {% else %}
+      <li class="nav-item">
+        <a class="nav-link" href="/accounts/darkmodeon/">DARKMODE</a>
+      </li>
+      {% endif %}
+      <li class="nav-item">
+        <a class="nav-link" href="/accounts/logout/">SIGN OUT</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="/accounts/scrape/">NEWS</a>
+      </li>
+        
+        
+      {% else %}
+      <li class="nav-item">
+        <a class="nav-link" href="/accounts/register/">SIGN UP</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="/accounts/login/">SIGN IN</a>
+      </li>
+      {% endif %}
+      </ul>
+      <form class="form-inline my-2 my-lg-0">
+        <input class="form-control mr-sm-2" type="text" placeholder="Search">
+        <button class="btn btn-secondary my-2 my-sm-0" type="submit">Search</button>
+      </form>
+    </div>
+    {% endblock %}
+</nav>
+    {% block content %}
+    {% endblock %}
+</body>
+</html>

@@ -1,0 +1,17 @@
+{% extends 'navbar.html' %}
+
+{% block content %}
+<style>
+    #id_password {
+        display:none;
+    }
+</style>
+<div class="container col-6">
+<form action="" method="POST">
+    {{ form.as_p }}
+    {% csrf_token %}
+    <input type="submit" class='btn btn-primary'>
+    <a href="/accounts/pswd/" class="ml-3">Change Password</a>
+</form>
+</div>
+{% endblock %}

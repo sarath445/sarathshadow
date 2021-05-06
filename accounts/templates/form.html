@@ -1,0 +1,17 @@
+{% extends 'navbar.html' %}
+{% load crispy_forms_tags %}
+
+{% block content %}
+<style>
+    #id_password{
+        display: none;
+    }
+</style>
+<div class="container col-6">
+<form action="" method="POST">
+    {% csrf_token %}
+    {{ form | crispy }}
+    <input type="submit">
+</form>
+</div>
+{% endblock %}

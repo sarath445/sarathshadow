@@ -1,0 +1,17 @@
+{% extends 'navbar.html' %}
+
+{% block content %}
+<div class="container col-6">
+{% for blog in object_list %}
+    <div class="card border-info">
+        <div class="card-body">
+            <h4 class="card-title">{{ blog.title }}</h4>
+            <h6 class="card-subtitle mb-2 text-muted">{{ blog.user | title }}</h6>
+            <p class="card-text">{{ blog.body }}</p>
+            <a href="/accounts/detail/{{blog.id}}/" class="card-link btn btn-success">Click!</a>
+            <a href="/accounts/delete/{{blog.id}}/" class="btn btn-danger">DELETE</a>
+        </div>
+    </div>
+{% endfor %}
+</div>
+{% endblock %}

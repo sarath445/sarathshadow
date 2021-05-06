@@ -1,0 +1,44 @@
+{% extends 'navbar.html' %}
+
+{% block content %}
+<script>
+    $(document).ready(function(){
+        $("#like").click(function(){
+            var self=this
+            var id=$(this).data("id");
+            $.get('/accounts/likeblog/',{"id":id},function(response){
+                if(response.liked==true){
+                    $(self).css({'color':'red'})
+                }
+                else{
+                    $(self).css({'color':'black'})
+                }
+                $('#count').text(response.count)
+            })
+        })
+    })
+</script>
+<div class='container  row'>
+    <div class='col-2'>
+        {% for b in blogs %}
+        <p> <a href="/accounts/detail/{{ b.id }}/">{{ b.title }}</a></p>
+        {% endfor %}
+    </div>
+<div class="col-10">
+<div>
+    <h1 class="display-4">{{ blog.title }}</h1>
+    <p class="badge badge-primary">By {{ blog.user | title }}</p>
+</div>
+<div>
+    <img src="{{ blog.image.url }}" alt="" style="object-fit:cover;width:880px;height: 400px;">
+</div>
+<p class="lead" >{{ blog.body }}</p>
+<div class="d-flex justify-content-between">
+<div><i {% if liked %} style="font-size:larger;color:red" {% else %} style="font-size:larger;color:black"{% endif %} class="fas fa-heart" id="like" data-id="{{blog.id}}"></i><span id="count">{{count}}</span></div>
+    <div>
+        {{blog.created_at}}
+    </div>
+</div>
+</div>
+</div>
+{% endblock %}

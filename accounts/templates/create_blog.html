@@ -1,0 +1,16 @@
+{% extends 'navbar.html' %}
+
+{% block content %}
+<div class="container col-10 mt-5 mb-5">
+<form action="" method="POST" enctype="multipart/form-data">
+    {{ form.as_p }}
+    {% csrf_token %}
+    <input type="submit" class="btn btn-primary" value="Save">
+</form>
+</div>
+{% endblock %}
+<!-- <center><h1>All World News</h1>
+            <!-- <a href="{% url 'scrape' %}" class="btn btn-success">Get my morning news</a> -->
+            <a href="https://www.bbc.com/news" class="btn btn-success">Get my morning news</a>
+        
+        </center> -->
